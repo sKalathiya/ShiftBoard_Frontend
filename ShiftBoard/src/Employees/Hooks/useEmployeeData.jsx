@@ -2,13 +2,15 @@ import { fetch } from "../../Utils/axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const fetchAllEmployees = () => {
-  return fetch({ url: "/api/v1/departments/admin" });
+  return fetch({ url: "/api/v1/employees/admin" });
 };
 
 export const useAllEmployeesData = () => {
   return useQuery({
     queryKey: ["Employees"],
     queryFn: fetchAllEmployees,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
   });
 };
 

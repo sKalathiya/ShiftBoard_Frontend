@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ListEmployee from "../../../Employees/List/ListEmployee";
 
 import "../department-features.css";
+import ListEmployeeInCard from "./ListEmployeeInCard";
 
 const SearchEmployeeInDepartment = ({ employees }) => {
   console.log("List rendered again");
@@ -36,7 +36,6 @@ const SearchEmployeeInDepartment = ({ employees }) => {
 
   //To check if the filter returns no employee
   let checkEmpty = filterEmployees.length === 0 ? true : false;
-  let size = filterEmployees.length;
 
   //HTML
   return (
@@ -53,7 +52,7 @@ const SearchEmployeeInDepartment = ({ employees }) => {
         <span></span>
       </div>
 
-      {!checkEmpty && <ListEmployee employees={filterEmployees} />}
+      {!checkEmpty && <ListEmployeeInCard employees={filterEmployees} />}
       {checkEmpty && (
         <div className="empty-search">
           <i className="fad fa-file-search fa-2xl"></i>

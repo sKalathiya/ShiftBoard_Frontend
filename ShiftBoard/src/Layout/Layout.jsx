@@ -6,7 +6,8 @@ import AddEmployee from "../Employees/Features/AddEmployee";
 
 import "./layout.css";
 import ListDepartment from "../Departments/List/ListDepartments";
-import EmployeeHome from "../Employees/Main/EmployeeHome";
+
+import Employees from "../Employees/Main/Employees";
 
 const Layout = () => {
   return (
@@ -26,7 +27,7 @@ const Layout = () => {
             ></Route>
 
             <Route path="/employees/add" element={<AddEmployee />}></Route>
-            <Route path="employees" element={<EmployeeHome />}></Route>
+            <Route path="employees" element={<Employees />}></Route>
           </Routes>
         </div>
       </div>

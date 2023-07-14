@@ -40,15 +40,15 @@ const ListDepartment = () => {
             <p data-label="Email:">{department.email}</p>
 
             <p data-label="No Of Employees:">{department.noOfEmployees}</p>
-
-            <img
-              className="view-icon"
+            <button
+              className="btn"
+              id="blackBg"
               onClick={() =>
                 navigate("/departments/" + department.departmentId)
               }
-              src={view}
-              alt="View"
-            />
+            >
+              <i className="fa-solid fa-eye"></i>
+            </button>
           </div>
         );
       })}
