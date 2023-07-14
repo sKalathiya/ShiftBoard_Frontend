@@ -328,3 +328,47 @@ input, select {
   background: #555; 
 } 
 
+
+
+
+/** List css**/
+.data-list h2{
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+  }
+
+   a{
+    cursor: pointer;
+  }
+.data-list:hover{
+  background-color: #dee2e6;
+}
+
+
+@media screen and (min-width: 768px) {
+  
+  #headList{
+    display: grid;
+  }
+ 
+  
+}
+
+@media all and (max-width: 768px) {
+ 
+      #headList{
+        display: none;
+      }
+  h2{  
+        &:before {
+          color: #6C7A89;
+          padding-right: 10px;
+          content: attr(data-label);
+          flex-basis: 50%;
+          text-align: right;
+          
+        }
+      }
+  
+}

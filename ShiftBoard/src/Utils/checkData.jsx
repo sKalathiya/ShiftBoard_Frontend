@@ -42,3 +42,13 @@ export const CheckEmployeeWithFilter = (employee, filter) => {
 
   return true;
 };
+
+export const CheckDepartmentWithFilter = (department, filter) => {
+  if (!department.name.includes(filter.name)) return false;
+
+  if (filter.email != "") if (department.email != filter.email) return false;
+
+  if (filter.dId != "") if (department.departmentId != filter.dId) return false;
+
+  return true;
+};

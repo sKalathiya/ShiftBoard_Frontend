@@ -2,8 +2,8 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
-import DepartmentEmployees from "./Main/DepartmentEmployees";
-import Details from "./Main/Details";
+import DepartmentEmployees from "./DepartmentEmployees";
+import Details from "./Details";
 
 const Department = () => {
   //getting id of department
