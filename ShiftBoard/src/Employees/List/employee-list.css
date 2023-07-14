@@ -1,0 +1,40 @@
+
+  
+  
+
+  
+
+
+  .pagination {
+    display: inline-block;
+    padding-top: 2.5rem;
+  }
+  
+  .pagination button {
+    background: #FFFFFF;
+    border: #FFFFFF;
+    font-size:medium;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0.75rem;
+    margin-right: 0.25rem;
+    text-decoration: none;
+  }
+  
+  .pagination button.active {
+    background-color: #0e1111;
+    color: white;
+  }
+  
+  .pagination button:hover:not(.active) {background-color: #ddd;}
+
+  .pagination .desc{
+    font-size: large;
+    padding: 0.75rem;
+    padding-left: 0;
+  }
+
+
+
+
+

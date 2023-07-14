@@ -1,0 +1,32 @@
+
+
+#parent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+    display: flex;
+    align-items: stretch;
+   
+  }
+  #navbar {
+    
+    flex: 0 0 7rem;
+
+  }
+  #content {
+    flex-grow: 5;
+    transition: width 0.1s;
+    overflow-y: auto;
+  }
+
+  @media screen and (max-width: 1300px) {
+    #navbar {
+    
+      flex: 0 0 3rem;
+  
+    }
+  }
+ 

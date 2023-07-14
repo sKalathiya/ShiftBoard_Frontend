@@ -1,0 +1,44 @@
+.my-navbar{
+  height: 100%;
+  background-color: rgb(17 24 39);
+}
+
+
+
+.navbar-list{
+  padding-top: 5rem;
+  color: white;
+}
+
+.nav-icons{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+ margin: 0 0.25rem 1rem 0.25rem;
+ padding: 0.25rem;
+text-decoration: none;
+ text-align: center;
+ cursor: pointer;
+ color: rgb(156 163 175);
+ 
+}
+
+.nav-icons:hover{
+
+  background-color: rgb(55 65 81);
+  color: rgb(209 213 219);
+  
+  }
+
+  @media screen and (max-width: 1300px) {
+    .text{
+      display: none;
+    }
+  }
+
+  .active{
+    background-color: rgb(55 65 81);
+  color: rgb(209 213 219);
+  text-decoration: none;
+  }
+  
