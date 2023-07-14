@@ -28,3 +28,17 @@ export const checkDepartmentUpdate = (department) => {
   }
   return inputError === "" ? "" : inputError;
 };
+
+export const CheckEmployeeWithFilter = (employee, filter) => {
+  if (filter.department != 0) {
+    if (employee.departmentId != filter.department) return false;
+  }
+
+  if (!employee.firstName.includes(filter.firstName)) return false;
+
+  if (filter.email != "") if (employee.email != filter.email) return false;
+
+  if (filter.eId != "") if (employee.id != filter.eId) return false;
+
+  return true;
+};
