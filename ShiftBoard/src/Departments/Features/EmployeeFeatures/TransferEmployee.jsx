@@ -22,7 +22,7 @@ const TransferEmployee = ({ employees, employeeId, icon }) => {
     isError: transferIsError,
     error: transferError,
     reset,
-  } = useTransferEmployees();
+  } = useTransferEmployees(employeeId);
 
   //getting all departments
   const { isError, error, isLoading, data } = useAllDepartmentsDataForForm();

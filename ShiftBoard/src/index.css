@@ -204,6 +204,17 @@ input, select {
   }
 }
 
+.grid-container-col7 {
+  display: grid;
+  gap: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .grid-container-col7  {
+    grid-template-columns: repeat(7, 1fr);
+    align-items: start;
+  }
+}
+
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -360,7 +371,7 @@ input, select {
       #headList{
         display: none;
       }
-  h2{  
+  .data-list h2{  
         &:before {
           color: #6C7A89;
           padding-right: 10px;
@@ -370,5 +381,6 @@ input, select {
           
         }
       }
+     
   
 }

@@ -55,8 +55,8 @@ const SearchEmployeeInDepartment = ({ employees }) => {
       {!checkEmpty && <ListEmployeeInCard employees={filterEmployees} />}
       {checkEmpty && (
         <div className="empty-search">
-          <i className="fad fa-file-search fa-2xl"></i>
-          <p> No Employee Found!!</p>
+          <i class="fal fa-file-search fa-2xl"></i>
+          <p className="mt-3"> No Employees Found !!</p>
         </div>
       )}
     </>

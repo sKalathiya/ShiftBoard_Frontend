@@ -2,12 +2,13 @@ import React from "react";
 import Navbar from "../NavBar/Navbar";
 
 import { Route, Routes } from "react-router-dom";
-import AddEmployee from "../Employees/Features/AddEmployee";
+
 import "./layout.css";
 
 import Employees from "../Employees/Main/Employees";
 import Department from "../Departments/Main/Department";
 import Departments from "../Departments/Main/Departments";
+import Employee from "../Employees/Main/Employee";
 
 const Layout = () => {
   return (
@@ -21,13 +22,8 @@ const Layout = () => {
           <Routes>
             <Route path="departments" element={<Departments />}></Route>
             <Route path="departments/:id" element={<Department />}></Route>
-            <Route
-              path="/employees/add/:departmentId"
-              element={<AddEmployee />}
-            ></Route>
-
-            <Route path="/employees/add" element={<AddEmployee />}></Route>
             <Route path="employees" element={<Employees />}></Route>
+            <Route path="employees/:id" element={<Employee />}></Route>
           </Routes>
         </div>
       </div>

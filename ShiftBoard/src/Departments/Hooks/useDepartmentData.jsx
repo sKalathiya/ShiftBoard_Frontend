@@ -80,11 +80,22 @@ const deleteEmployeeById = (data) => {
   });
 };
 
-export const useDeleteEmployeeInDepartment = (departmentId) => {
+export const useDeleteEmployeeInDepartment = (
+  departmentId,
+  employeeId,
+  collection
+) => {
   const queryClient = useQueryClient();
   return useMutation(deleteEmployeeById, {
     onSuccess: () => {
       queryClient.invalidateQueries(["Department", "" + departmentId]);
+      if (!collection) {
+        queryClient.invalidateQueries([
+          "Employee",
+          "" + employeeId,
+          "Department",
+        ]);
+      }
     },
   });
 };
@@ -99,11 +110,12 @@ const transferEmployees = (data) => {
   });
 };
 
-export const useTransferEmployees = () => {
+export const useTransferEmployees = (id) => {
   const queryClient = useQueryClient();
   return useMutation(transferEmployees, {
     onSuccess: () => {
       queryClient.invalidateQueries(["Department"]);
+      queryClient.invalidateQueries(["Employee", "" + id, "Department"]);
     },
   });
 };

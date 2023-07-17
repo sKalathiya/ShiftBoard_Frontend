@@ -9,6 +9,7 @@ import DeleteEmployeeInDepartment from "../Features/EmployeeFeatures/DeleteEmplo
 
 const DepartmentEmployees = ({ id }) => {
   //Fetching data
+  console.log(id);
   const { isLoading, isError, error, data } = useEmployeeDataByDepartmentId(id);
   if (isLoading) return <Loading count={5} />;
 
@@ -31,11 +32,13 @@ const DepartmentEmployees = ({ id }) => {
               Add
             </button>
             <TransferEmployee employees={employees} />
-            <DeleteEmployeeInDepartment
-              employees={employees}
-              collection={true}
-              departmentId={id}
-            />
+            {id != -1 && (
+              <DeleteEmployeeInDepartment
+                employees={employees}
+                collection={true}
+                departmentId={id}
+              />
+            )}
           </span>
         </span>
         <div className="component-container-body">

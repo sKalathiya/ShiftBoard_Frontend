@@ -18,24 +18,29 @@ const ListEmployee = ({ employees }) => {
         {employees.map((employee) => {
           return (
             <div className="grid-container-col5 border-bottom data-list p-2">
-              <h2 data-label="Name:">{employee.id}</h2>
+              <h2 data-label="Id:">{employee.id}</h2>
 
               <h2 data-label="Name:">{employee.firstName}</h2>
 
-              <a
-                data-label="Name:"
-                className="link-primary"
+              <h2
+                data-label="Department Id:"
                 onClick={() =>
                   navigate("/departments/" + employee.departmentId)
                 }
               >
-                {employee.departmentId}
-              </a>
+                <a className="link-primary">{employee.departmentId}</a>
+              </h2>
               <h2 data-label="Name:">{employee.email}</h2>
-
               <span className="end inline-actions">
-                <button className="btn " id="blackBg">
-                  <i className="fa-solid fa-eye"></i>
+                <button
+                  className="btn px-3"
+                  id="blackBg"
+                  onClick={() => navigate("/employees/" + employee.id)}
+                >
+                  <i className="fas fa-eye"></i>
+                </button>
+                <button className="btn px-3 mx-1" id="redBg">
+                  <i className="fas fa-trash-alt"></i>
                 </button>
               </span>
             </div>
