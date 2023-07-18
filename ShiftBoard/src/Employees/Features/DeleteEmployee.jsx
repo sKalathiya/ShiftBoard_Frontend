@@ -1,12 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useDeleteDepartment } from "../../Hooks/useDepartmentData";
-import { notify } from "../../../Utils/Notification/Notification";
-
-import "../department-features.css";
+import { notify } from "../../Utils/Notification/Notification";
+import { useDeleteEmployee } from "../Hooks/useEmployeeData";
 import { useState, useEffect } from "react";
-import Loading from "../../../Utils/Loading";
+import Loading from "../../Utils/Loading";
 
-const DeleteDepartment = ({ id, departmentName }) => {
+const DeleteEmployee = ({ id, departmentId }) => {
   const navigate = useNavigate();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isMatch, setIsMatch] = useState(false);
@@ -14,7 +12,7 @@ const DeleteDepartment = ({ id, departmentName }) => {
 
   //After rendering
   useEffect(() => {
-    if (doNavigate) navigate("/departments");
+    if (doNavigate) navigate("/employees");
   }, [doNavigate]);
 
   //Form Handling
@@ -28,10 +26,10 @@ const DeleteDepartment = ({ id, departmentName }) => {
     isLoading,
     isError,
     error,
-    mutate: deleteDepartment,
+    mutate: deleteEmployee,
     data,
     reset,
-  } = useDeleteDepartment();
+  } = useDeleteEmployee(departmentId);
 
   if (isError) {
     reset();
@@ -40,7 +38,7 @@ const DeleteDepartment = ({ id, departmentName }) => {
 
   if (data?.data?.operationStatus === "Success") {
     reset();
-    notify(`Department ${id} Deleted`, "S");
+    notify(`Employee ${id} Deleted`, "S");
     setDoNavigate(true);
     setConfirmDelete(false);
   } else if (data?.data?.operationStatus === "Failure") {
@@ -52,8 +50,8 @@ const DeleteDepartment = ({ id, departmentName }) => {
   //handle click for delete
   const handleDeleteClick = (e) => {
     e.preventDefault();
-    if (inputData === departmentName) {
-      deleteDepartment(id);
+    if (inputData === id) {
+      deleteEmployee(id);
     } else {
       setIsMatch(true);
     }
@@ -83,18 +81,18 @@ const DeleteDepartment = ({ id, departmentName }) => {
             </div>
             <div className="component-container-body">
               <h5 className=" ">
-                Are you sure you want to delete this Department?
+                Are you sure you want to delete this Employee?
               </h5>
               <span>
                 {isMatch && (
                   <div className="alert alert-danger p-1 my-2 " role="alert">
-                    Department Name Does not Match
+                    Employee ID Does not Match
                   </div>
                 )}
                 <input
                   type="text"
                   required
-                  placeholder="Enter the name of department"
+                  placeholder="Enter the id of the employee"
                   value={inputData}
                   onChange={handleInputText}
                 />
@@ -123,4 +121,4 @@ const DeleteDepartment = ({ id, departmentName }) => {
   );
 };
 
-export default DeleteDepartment;
+export default DeleteEmployee;

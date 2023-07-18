@@ -1,41 +1,37 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./employee-list.css";
+import "./department-list.css";
 
-const ListEmployee = ({ employees }) => {
+const ListDepartment = ({ departments }) => {
   const navigate = useNavigate();
+
   return (
     <>
       <div className="grid-container-col1 border p-4">
         <div className="grid-container-col5 border-bottom p-2" id="headList">
-          <label htmlFor="employeeId">Employee Id</label>
-          <label htmlFor="firstName">First Name</label>
-          <label htmlFor="department">Department</label>
+          <label htmlFor="departmentId">Department Id</label>
+          <label htmlFor="name">Name</label>
+          <label htmlFor="totalEmployees">Total Employees</label>
           <label htmlFor="email">Email</label>
           <label htmlFor="actions">Actions</label>
         </div>
 
-        {employees.map((employee) => {
+        {departments.map((department) => {
           return (
             <div className="grid-container-col5 border-bottom data-list p-2">
-              <h2 data-label="Id:">{employee.id}</h2>
+              <h2 data-label="Id:">{department.departmentId}</h2>
 
-              <h2 data-label="Name:">{employee.firstName}</h2>
+              <h2 data-label="Name:">{department.name}</h2>
 
-              <h2
-                data-label="Department Id:"
-                onClick={() =>
-                  navigate("/departments/" + employee.departmentId)
-                }
-              >
-                <a className="link-primary">{employee.departmentId}</a>
-              </h2>
-              <h2 data-label="Name:">{employee.email}</h2>
+              <h2 data-label="Email:">{department.email}</h2>
+              <h2 data-label="No Of Employees:">{department.noOfEmployees}</h2>
+
               <span className="end inline-actions">
                 <button
                   className="btn px-3"
                   id="blackBg"
-                  onClick={() => navigate("/employees/" + employee.id)}
+                  onClick={() =>
+                    navigate("/departments/" + department.departmentId)
+                  }
                 >
                   <i className="fas fa-eye"></i>
                 </button>
@@ -51,4 +47,4 @@ const ListEmployee = ({ employees }) => {
   );
 };
 
-export default ListEmployee;
+export default ListDepartment;

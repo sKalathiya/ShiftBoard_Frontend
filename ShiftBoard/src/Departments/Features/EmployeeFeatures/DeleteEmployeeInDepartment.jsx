@@ -22,7 +22,7 @@ const DeleteEmployeeInDepartment = ({
     mutate: removeEmployee,
     data,
     reset,
-  } = useDeleteEmployeeInDepartment(departmentId);
+  } = useDeleteEmployeeInDepartment(departmentId, employeeId, collection);
 
   if (isError) {
     notify(error.message, "E");
