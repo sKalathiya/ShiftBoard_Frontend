@@ -30,7 +30,7 @@ const Details = ({ id }) => {
     <>
       <div className="component-container">
         <span className="component-container-header">
-          <h1>{departmentName}</h1>
+          <p className="page-heading">{departmentName}</p>
           <UpdateDepartment department={department} />
         </span>
 

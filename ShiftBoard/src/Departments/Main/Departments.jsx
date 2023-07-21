@@ -25,7 +25,7 @@ const Departments = () => {
     <section className="main-Container">
       <div className="component-container">
         <span className="component-container-header">
-          <h1>Departments</h1>
+          <p className="page-heading">Departments</p>
         </span>
 
         <div className="component-container-body">

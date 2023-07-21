@@ -37,7 +37,7 @@ const LeaveInfo = ({ id: employeeId }) => {
     <>
       <div className="component-container">
         <span className="component-container-header">
-          <h4>Leaves</h4>
+          <p className="heading">Leaves</p>
           <button
             className="btn p-0 end"
             title="View Department"
@@ -63,7 +63,15 @@ const LeaveInfo = ({ id: employeeId }) => {
                 <h2 data-label="Date:">{leave.date}</h2>
                 <h2 data-label="Category:">{leave.category}</h2>
                 <h2 data-label="Reason:">{leave.reason}</h2>
-                <h2 data-label="Status:">{leave.state}</h2>
+                {leave.state === "APPROVED" ? (
+                  <h2 data-label="Status:">
+                    <i class="fa-solid fa-circle-check"></i> {leave.state}
+                  </h2>
+                ) : (
+                  <h2 data-label="Status:">
+                    <i class="fa-solid fa-circle-xmark"></i> {leave.state}
+                  </h2>
+                )}
               </div>
             );
           })}

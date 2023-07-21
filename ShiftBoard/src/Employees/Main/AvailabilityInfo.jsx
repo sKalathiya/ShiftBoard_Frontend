@@ -24,7 +24,7 @@ const AvailabilityInfo = ({ id: employeeId }) => {
   return (
     <>
       <span className="component-container-header mt-5">
-        <h5>
+        <p className="sub-heading">
           Restrictions{" "}
           <button
             className="btn p-0 end"
@@ -33,7 +33,7 @@ const AvailabilityInfo = ({ id: employeeId }) => {
           >
             <i className="fas fa-external-link  "></i>
           </button>
-        </h5>
+        </p>
       </span>
 
       <div className="component-container-body border p-4">
@@ -55,7 +55,15 @@ const AvailabilityInfo = ({ id: employeeId }) => {
               <h2 data-label="Start Time:">{availability.startTime}</h2>
               <h2 data-label="End Time:">{availability.endTime}</h2>
               <h2 data-label="Reason:">{availability.reason}</h2>
-              <h2 data-label="Status:">{availability.state}</h2>
+              {availability.state === "APPROVED" ? (
+                <h2 data-label="Status:">
+                  <i class="fa-solid fa-circle-check"></i> {availability.state}
+                </h2>
+              ) : (
+                <h2 data-label="Status:">
+                  <i class="fa-solid fa-circle-xmark"></i> {availability.state}
+                </h2>
+              )}
             </div>
           );
         })}

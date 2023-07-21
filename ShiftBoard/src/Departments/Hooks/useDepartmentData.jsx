@@ -50,7 +50,11 @@ const deleteDepartmentById = (id) => {
 };
 
 export const useDeleteDepartment = () => {
-  return useMutation(deleteDepartmentById);
+  return useMutation(deleteDepartmentById, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Departments"]);
+    },
+  });
 };
 
 //Update Department by Id
@@ -67,6 +71,7 @@ export const useUpdateDepartment = (id) => {
   return useMutation(updateDepartmentById, {
     onSuccess: () => {
       queryClient.invalidateQueries(["Department", "" + id, "Details"]);
+      queryClient.invalidateQueries(["Departments"]);
     },
   });
 };
@@ -96,6 +101,7 @@ export const useDeleteEmployeeInDepartment = (
           "Department",
         ]);
       }
+      queryClient.invalidateQueries(["Departments"]);
     },
   });
 };
@@ -110,11 +116,21 @@ const transferEmployees = (data) => {
   });
 };
 
-export const useTransferEmployees = (id) => {
+export const useTransferEmployees = (id, departmentId) => {
   const queryClient = useQueryClient();
   return useMutation(transferEmployees, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["Department"]);
+      queryClient.invalidateQueries([
+        "Department",
+        "" + departmentId,
+        "Details",
+      ]);
+      queryClient.invalidateQueries([
+        "Department",
+        "" + departmentId,
+        "Employees",
+      ]);
+      queryClient.invalidateQueries(["Departments"]);
       queryClient.invalidateQueries(["Employee", "" + id, "Department"]);
     },
   });
@@ -123,7 +139,7 @@ export const useTransferEmployees = (id) => {
 //All Departments for forms
 export const useAllDepartmentsDataForForm = () => {
   return useQuery({
-    queryKey: ["DepartmentsForForm"],
+    queryKey: ["Departments"],
     queryFn: fetchAllDepartments,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

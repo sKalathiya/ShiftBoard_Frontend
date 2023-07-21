@@ -89,7 +89,7 @@ const UpdateEmployee = ({ employee }) => {
       {isOpen && (
         <div className="modal-container">
           <div className="modal-main component-container ">
-            <div className="component-container-header">
+            <div className="component-container-header ">
               <span></span>
               <button
                 type="button"
@@ -97,14 +97,13 @@ const UpdateEmployee = ({ employee }) => {
                 onClick={() => setIsOpen(false)}
               ></button>
             </div>
+            <p className="modal-heading">Update Employee</p>
 
-            <div className="component-container-body">
+            <div className="component-container-body modal-body">
               <form
                 onSubmit={handleSubmit}
-                className="grid-container-col1 form-outline"
+                className="grid-container-col1 form-outline "
               >
-                <h2>Update Employee</h2>
-
                 <div className="grid-container-col2">
                   <span>
                     <label htmlFor="firstName">First Name:</label>
@@ -173,40 +172,39 @@ const UpdateEmployee = ({ employee }) => {
                       onChange={handleChange}
                     />
                   </span>
-                  <span className="grid-container-col2">
-                    <span>
-                      <label htmlFor="country">Country:</label>
-                      <input
-                        type="text"
-                        id="country"
-                        name="country"
-                        required
-                        value={formData.country}
-                        onChange={handleChange}
-                      />
-                    </span>
-                    <span>
-                      <label htmlFor="zip_code">Zip Code:</label>
-                      <input
-                        type="text"
-                        id="zip_code"
-                        name="zip_code"
-                        required
-                        value={formData.zip_code}
-                        onChange={handleChange}
-                      />
-                    </span>
+
+                  <span>
+                    <label htmlFor="country">Country:</label>
+                    <input
+                      type="text"
+                      id="country"
+                      name="country"
+                      required
+                      value={formData.country}
+                      onChange={handleChange}
+                    />
                   </span>
-                  {isLoading ? (
-                    <button className="btn" id="blackBg" disabled>
-                      <i className="fas fa-circle-notch fa-spin"></i>
-                    </button>
-                  ) : (
-                    <button className="btn my-4" id="blackBg" type="submit">
-                      <i className="fas fa-edit  "></i> Update
-                    </button>
-                  )}
+                  <span>
+                    <label htmlFor="zip_code">Zip Code:</label>
+                    <input
+                      type="text"
+                      id="zip_code"
+                      name="zip_code"
+                      required
+                      value={formData.zip_code}
+                      onChange={handleChange}
+                    />
+                  </span>
                 </div>
+                {isLoading ? (
+                  <button className="btn" id="blackBg" disabled>
+                    <i className="fas fa-circle-notch fa-spin"></i>
+                  </button>
+                ) : (
+                  <button className="btn my-4" id="blackBg" type="submit">
+                    <i className="fas fa-edit  "></i> Update
+                  </button>
+                )}
               </form>
             </div>
           </div>

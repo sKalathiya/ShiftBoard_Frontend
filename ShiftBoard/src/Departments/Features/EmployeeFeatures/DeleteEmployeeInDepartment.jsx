@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Loading from "../../../Utils/Loading";
+
 import { useDeleteEmployeeInDepartment } from "../../Hooks/useDepartmentData";
 import { notify } from "../../../Utils/Notification/Notification";
 import Select from "../../../Utils/Select/Select";
@@ -94,9 +94,9 @@ const DeleteEmployeeInDepartment = ({
                 }}
               ></button>
             </div>
-            <div className="component-container-body">
+            <p className="modal-heading">Remove Employees</p>
+            <div className="component-container-body modal-body">
               <div className="grid-container-col1 form-outline">
-                <h3>Remove Employees</h3>
                 <span>
                   <Select
                     dataList={employees.map((e) => e.id)}

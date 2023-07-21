@@ -82,14 +82,12 @@ const UpdateDepartment = ({ department }) => {
                 onClick={() => setIsOpen(false)}
               ></button>
             </div>
-
-            <div className="component-container-body">
+            <p className="modal-heading">Update Department</p>
+            <div className="component-container-body modal-body">
               <form
                 onSubmit={handleSubmit}
                 className="grid-container-col1 form-outline"
               >
-                <h2>Update Department</h2>
-
                 <span>
                   <label htmlFor="name">Name:</label>
                   <input
