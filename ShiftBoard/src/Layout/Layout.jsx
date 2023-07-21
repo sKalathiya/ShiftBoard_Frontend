@@ -9,6 +9,7 @@ import Employees from "../Employees/Main/Employees";
 import Department from "../Departments/Main/Department";
 import Departments from "../Departments/Main/Departments";
 import Employee from "../Employees/Main/Employee";
+import Footer from "../Footer/Footer";
 
 const Layout = () => {
   return (

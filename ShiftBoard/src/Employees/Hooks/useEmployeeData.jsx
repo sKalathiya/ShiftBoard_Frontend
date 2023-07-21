@@ -29,24 +29,6 @@ export const useEmployeeData = (id) => {
   });
 };
 
-// const addEmployee = (employee) => {
-//   console.log(employee);
-//   return fetch({
-//     url: "/api/v1/employees/admin",
-//     method: "post",
-//     data: employee,
-//   });
-// };
-
-// export const useAddEmployee = (id) => {
-//   const queryClient = useQueryClient();
-//   return useMutation(addEmployee, {
-//     onSuccess: () => {
-//       queryClient.invalidateQueries(["EmployeesByDepartmentId", id]);
-//     },
-//   });
-// };
-
 //Fetch schedule nby Eid
 const fetchScheduleByEmployeeId = (id) => {
   return fetch({ url: `/api/v1/schedules/employee/${id}` });
@@ -117,6 +99,7 @@ export const useUpdateEmployee = (id) => {
   return useMutation(updateEmployeeById, {
     onSuccess: () => {
       queryClient.invalidateQueries(["Employee", "" + id, "Details"]);
+      queryClient.invalidateQueries(["Employees"]);
     },
   });
 };
@@ -131,6 +114,27 @@ export const useDeleteEmployee = (dId) => {
   return useMutation(deleteEmployeeById, {
     onSuccess: () => {
       queryClient.invalidateQueries(["Department", "" + dId]);
+      queryClient.invalidateQueries(["Employees"]);
+    },
+  });
+};
+
+//add employee
+const addEmployee = (employee) => {
+  console.log(employee);
+  return fetch({
+    url: "/api/v1/employees/admin",
+    method: "post",
+    data: employee,
+  });
+};
+
+export const useAddEmployee = () => {
+  const queryClient = useQueryClient();
+  return useMutation(addEmployee, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Employees"]);
+      queryClient.invalidateQueries(["Departments"]);
     },
   });
 };

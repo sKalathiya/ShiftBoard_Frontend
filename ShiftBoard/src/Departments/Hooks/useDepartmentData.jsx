@@ -50,6 +50,7 @@ const deleteDepartmentById = (id) => {
 };
 
 export const useDeleteDepartment = () => {
+  const queryClient = useQueryClient();
   return useMutation(deleteDepartmentById, {
     onSuccess: () => {
       queryClient.invalidateQueries(["Departments"]);
@@ -120,18 +121,28 @@ export const useTransferEmployees = (id, departmentId) => {
   const queryClient = useQueryClient();
   return useMutation(transferEmployees, {
     onSuccess: () => {
-      queryClient.invalidateQueries([
-        "Department",
-        "" + departmentId,
-        "Details",
-      ]);
-      queryClient.invalidateQueries([
-        "Department",
-        "" + departmentId,
-        "Employees",
-      ]);
+      queryClient.invalidateQueries(["Department", "" + departmentId]);
       queryClient.invalidateQueries(["Departments"]);
       queryClient.invalidateQueries(["Employee", "" + id, "Department"]);
+    },
+  });
+};
+
+// Add department
+const addDepartment = (department) => {
+  console.log(department);
+  return fetch({
+    url: "/api/v1/departments/admin",
+    method: "post",
+    data: department,
+  });
+};
+
+export const useAddDepartment = () => {
+  const queryClient = useQueryClient();
+  return useMutation(addDepartment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Departments"]);
     },
   });
 };
