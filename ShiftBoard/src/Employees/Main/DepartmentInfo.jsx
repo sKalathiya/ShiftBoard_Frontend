@@ -28,7 +28,7 @@ const DepartmentInfo = ({ id: employeeId }) => {
     <>
       <div className="component-container">
         <span className="component-container-header">
-          <h4>Department</h4>
+          <p className="heading">Department</p>
           <button
             className="btn p-0 end"
             title="View Department"
@@ -49,7 +49,10 @@ const DepartmentInfo = ({ id: employeeId }) => {
               <h2>{departmentName}</h2>
             </span>
             <span>
-              <TransferEmployee employeeId={employeeId} />
+              <TransferEmployee
+                employeeId={employeeId}
+                departmentId={departmentId}
+              />
               {departmentId != -1 && (
                 <DeleteEmployeeInDepartment
                   employeeId={employeeId}

@@ -18,7 +18,7 @@ const Employees = () => {
     <section className="main-Container">
       <div className="component-container">
         <span className="component-container-header">
-          <h1>Employees</h1>
+          <p className="page-heading">Employees</p>
         </span>
 
         <div className="component-container-body">

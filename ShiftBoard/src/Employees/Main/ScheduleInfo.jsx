@@ -22,7 +22,7 @@ const ScheduleInfo = ({ id }) => {
   return (
     <div className="component-container">
       <span className="component-container-header">
-        <h4>Schedule</h4>
+        <p className="heading">Schedule</p>
 
         <button className="btn p-0 end" title="View Schedule">
           <i className="fas fa-external-link  fa-xl"></i>

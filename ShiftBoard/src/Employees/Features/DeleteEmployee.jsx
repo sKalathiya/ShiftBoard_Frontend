@@ -64,7 +64,7 @@ const DeleteEmployee = ({ id, departmentId }) => {
         className="btn px-4"
         id="redBg"
         onClick={() => setConfirmDelete(true)}
-        title="Delete Department"
+        title="Delete Employee"
       >
         <i className="fas fa-trash-alt"></i>
       </button>
@@ -79,10 +79,10 @@ const DeleteEmployee = ({ id, departmentId }) => {
                 onClick={() => setConfirmDelete(false)}
               ></button>
             </div>
-            <div className="component-container-body">
-              <h5 className=" ">
-                Are you sure you want to delete this Employee?
-              </h5>
+            <h4>
+              <b>Are you sure you want to delete this Employee?</b>
+            </h4>
+            <div className="component-container-body modal-body">
               <span>
                 {isMatch && (
                   <div className="alert alert-danger p-1 my-2 " role="alert">

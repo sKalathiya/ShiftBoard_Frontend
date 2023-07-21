@@ -33,9 +33,9 @@ const EmployeeInfo = ({ employeeId }) => {
     <>
       <div className="component-container">
         <span className="component-container-header">
-          <h2>
+          <p className="page-heading">
             {firstName} {lastName}
-          </h2>
+          </p>
           <UpdateEmployee employee={employee} />
         </span>
 

@@ -1,4 +1,3 @@
-import "./department-main.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEmployeeDataByDepartmentId } from "../Hooks/useDepartmentData";
@@ -26,12 +25,12 @@ const DepartmentEmployees = ({ id }) => {
     <>
       <div className="component-container">
         <span className="component-container-header">
-          <h2 className="">Employees</h2>
+          <p className="heading">Employees</p>
           <span className="end inline-actions">
             <button className="btn" id="blackBg">
               Add
             </button>
-            <TransferEmployee employees={employees} />
+            <TransferEmployee employees={employees} departmentId={id} />
             {id != -1 && (
               <DeleteEmployeeInDepartment
                 employees={employees}

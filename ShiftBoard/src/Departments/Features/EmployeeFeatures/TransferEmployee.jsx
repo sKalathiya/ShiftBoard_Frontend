@@ -7,7 +7,7 @@ import {
 import Loading from "../../../Utils/Loading";
 import Select from "../../../Utils/Select/Select";
 
-const TransferEmployee = ({ employees, employeeId, icon }) => {
+const TransferEmployee = ({ employees, employeeId, icon, departmentId }) => {
   //form data
   const [newDepartment, setNewDepartment] = useState("-1");
   const [employeesId, setEmployeesId] = useState([]);
@@ -22,7 +22,7 @@ const TransferEmployee = ({ employees, employeeId, icon }) => {
     isError: transferIsError,
     error: transferError,
     reset,
-  } = useTransferEmployees(employeeId);
+  } = useTransferEmployees(employeeId, departmentId);
 
   //getting all departments
   const { isError, error, isLoading, data } = useAllDepartmentsDataForForm();
@@ -117,9 +117,9 @@ const TransferEmployee = ({ employees, employeeId, icon }) => {
                 }}
               ></button>
             </div>
-            <div className="component-container-body">
+            <p className="modal-heading">Transfer Employees</p>
+            <div className="component-container-body modal-body">
               <div className="grid-container-col1 form-outline">
-                <h3>Transfer Employees</h3>
                 <span>
                   {employeeId ? (
                     <>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import "../department-features.css";
 import ListEmployeeInCard from "./ListEmployeeInCard";
 
 const SearchEmployeeInDepartment = ({ employees }) => {

@@ -2,9 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDeleteDepartment } from "../../Hooks/useDepartmentData";
 import { notify } from "../../../Utils/Notification/Notification";
 
-import "../department-features.css";
 import { useState, useEffect } from "react";
-import Loading from "../../../Utils/Loading";
 
 const DeleteDepartment = ({ id, departmentName }) => {
   const navigate = useNavigate();
@@ -81,10 +79,10 @@ const DeleteDepartment = ({ id, departmentName }) => {
                 onClick={() => setConfirmDelete(false)}
               ></button>
             </div>
-            <div className="component-container-body">
-              <h5 className=" ">
-                Are you sure you want to delete this Department?
-              </h5>
+            <h4>
+              <b>Are you sure you want to delete this Department?</b>
+            </h4>
+            <div className="component-container-body modal-body">
               <span>
                 {isMatch && (
                   <div className="alert alert-danger p-1 my-2 " role="alert">
