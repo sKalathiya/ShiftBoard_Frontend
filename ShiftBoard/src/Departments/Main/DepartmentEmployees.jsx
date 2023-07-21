@@ -5,6 +5,7 @@ import SearchEmployeeInDepartment from "../Features/EmployeeFeatures/SearchEmplo
 import Loading from "../../Utils/Loading";
 import TransferEmployee from "../Features/EmployeeFeatures/TransferEmployee";
 import DeleteEmployeeInDepartment from "../Features/EmployeeFeatures/DeleteEmployeeInDepartment";
+import AddEmployee from "../../Employees/Features/AddEmployee";
 
 const DepartmentEmployees = ({ id }) => {
   //Fetching data
@@ -27,9 +28,6 @@ const DepartmentEmployees = ({ id }) => {
         <span className="component-container-header">
           <p className="heading">Employees</p>
           <span className="end inline-actions">
-            <button className="btn" id="blackBg">
-              Add
-            </button>
             <TransferEmployee employees={employees} departmentId={id} />
             {id != -1 && (
               <DeleteEmployeeInDepartment

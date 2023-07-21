@@ -17,7 +17,10 @@ const ListDepartment = ({ departments }) => {
 
         {departments.map((department) => {
           return (
-            <div className="grid-container-col5 border-bottom data-list p-2">
+            <div
+              className="grid-container-col5 border-bottom data-list p-2"
+              key={department.departmentId}
+            >
               <h2 data-label="Id:">{department.departmentId}</h2>
 
               <h2 data-label="Name:">{department.name}</h2>
