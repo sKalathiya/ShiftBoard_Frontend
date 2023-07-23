@@ -43,7 +43,10 @@ const LeaveInfo = ({ id: employeeId }) => {
             title="View Department"
             onClick={() => navigate("/leaves/" + departmentId)}
           >
-            <i className="fas fa-external-link  fa-xl"></i>
+            <i
+              className="fas fa-external-link  fa-xl"
+              onClick={() => navigate("/leaves")}
+            ></i>
           </button>
         </span>
 
@@ -63,14 +66,26 @@ const LeaveInfo = ({ id: employeeId }) => {
                 <h2 data-label="Date:">{leave.date}</h2>
                 <h2 data-label="Category:">{leave.category}</h2>
                 <h2 data-label="Reason:">{leave.reason}</h2>
-                {leave.state === "APPROVED" ? (
+                {leave.state === "APPROVED" && (
                   <h2 data-label="Status:">
                     <i class="fa-solid fa-circle-check"></i> {leave.state}
                   </h2>
-                ) : (
+                )}
+                {leave.state === "DECLINED" && (
                   <h2 data-label="Status:">
                     <i class="fa-solid fa-circle-xmark"></i> {leave.state}
                   </h2>
+                )}
+
+                {leave.state == "PENDING" && (
+                  <span>
+                    <button className="btn me-1" title="Accept" id="blackBg">
+                      <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                    <button className="btn " title="Reject" id="redBg">
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </span>
                 )}
               </div>
             );

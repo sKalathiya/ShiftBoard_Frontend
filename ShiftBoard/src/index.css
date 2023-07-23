@@ -376,9 +376,14 @@ input, select {
   line-height: 1.5;
   margin-bottom: 0;
   }
+  a{cursor: pointer;}
 
-   a{
+  .view{
     cursor: pointer;
+    text-decoration: none;
+  }
+   .view:hover{
+    text-decoration: underline;
   }
 .data-list:hover{
   background-color: #ECF0F1;
@@ -420,3 +425,7 @@ input, select {
   font-weight: 500;
 }
 
+
+.badge{
+  background-color: var(--primary-color) !important;
+}

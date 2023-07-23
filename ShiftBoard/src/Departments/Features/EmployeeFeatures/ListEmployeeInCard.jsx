@@ -15,7 +15,7 @@ const ListEmployeeInCard = ({ employees }) => {
               <span>
                 <label htmlFor="employeeId">Employee Id</label>
                 <h2 onClick={() => navigate("/employees/" + employee.id)}>
-                  <a className="link-primary">{employee.id}</a>
+                  <a className="link-primary view">{employee.id}</a>
                 </h2>
               </span>
               <span>

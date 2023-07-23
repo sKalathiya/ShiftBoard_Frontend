@@ -85,3 +85,14 @@ export const CheckDepartmentWithFilter = (department, filter) => {
 
   return true;
 };
+
+export const checkLeaveWithFilter = (leave, filter) => {
+  if (filter.employeeId != "")
+    if (leave.employeeId != filter.employeeId) return false;
+
+  if (filter.category != "Select Category of Leave")
+    if (leave.category != filter.category) return false;
+
+  if (filter.date != "") if (leave.date != filter.date) return false;
+  return true;
+};
