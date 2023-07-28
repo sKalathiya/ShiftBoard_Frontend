@@ -21,7 +21,7 @@ const fetchDepartmentById = (id) => {
 
 export const useDepartmentData = (id) => {
   return useQuery({
-    queryKey: ["Department", id, "Details"],
+    queryKey: ["Department", "" + id, "Details"],
     queryFn: () => fetchDepartmentById(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -37,7 +37,7 @@ const fetchEmployeesByPageAndDepartmentId = (id) => {
 
 export const useEmployeeDataByDepartmentId = (id) => {
   return useQuery({
-    queryKey: ["Department", id, "Employees"],
+    queryKey: ["Department", "" + id, "Employees"],
     queryFn: () => fetchEmployeesByPageAndDepartmentId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

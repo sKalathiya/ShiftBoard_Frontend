@@ -22,7 +22,7 @@ const fetchEmployeeById = (id) => {
 
 export const useEmployeeData = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Details"],
+    queryKey: ["Employee", "" + id, "Details"],
     queryFn: () => fetchEmployeeById(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -36,7 +36,7 @@ const fetchScheduleByEmployeeId = (id) => {
 
 export const useScheduleDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Schedule"],
+    queryKey: ["Employee", "" + id, "Schedule"],
     queryFn: () => fetchScheduleByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -50,7 +50,7 @@ const fetchDepartmentByEmployeeId = (id) => {
 
 export const useDepartmentDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Department"],
+    queryKey: ["Employee", "" + id, "Department"],
     queryFn: () => fetchDepartmentByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -64,7 +64,7 @@ const fetchAvailabilityByEmployeeId = (id) => {
 
 export const useAvailabilityDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Availability"],
+    queryKey: ["Employee", "" + id, "Availability"],
     queryFn: () => fetchAvailabilityByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -78,7 +78,7 @@ const fetchLeaveByEmployeeId = (id) => {
 
 export const useLeaveDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Leave"],
+    queryKey: ["Employee", "" + id, "Leave"],
     queryFn: () => fetchLeaveByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

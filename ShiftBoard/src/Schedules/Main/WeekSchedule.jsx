@@ -7,6 +7,7 @@ import RemoveSchedule from "../Feature/RemoveSchedule";
 
 const WeekSchedule = ({ id }) => {
   const { isLoading, isError, error, data } = useScheduleBiweeklyData(id);
+
   if (isLoading) return <Loading count={5} />;
 
   if (isError) {
