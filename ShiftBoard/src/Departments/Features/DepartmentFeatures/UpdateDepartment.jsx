@@ -38,7 +38,6 @@ const UpdateDepartment = ({ department }) => {
   } else if (status?.data?.operationStatus === "Failure") {
     reset();
     notify(status?.data?.failureReason, "E");
-    setIsOpen(false);
   }
 
   //handle change of the update

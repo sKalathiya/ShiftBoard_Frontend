@@ -1,8 +1,11 @@
 import React from "react";
 import { useAvailabilityDataFromEmployeeId } from "../Hooks/useEmployeeData";
 import Loading from "../../Utils/Loading";
+import { useNavigate } from "react-router-dom";
+import UpdateStatusRestriction from "../../Restrictions/Feature/UpdateStatusRestriction";
 
 const AvailabilityInfo = ({ id: employeeId }) => {
+  const navigate = useNavigate();
   const { isLoading, isError, error, data } =
     useAvailabilityDataFromEmployeeId(employeeId);
   if (isLoading) return <Loading count={5} />;
@@ -29,7 +32,7 @@ const AvailabilityInfo = ({ id: employeeId }) => {
           <button
             className="btn p-0 end"
             title="View Restrictions"
-            onClick={() => navigate("/availabilities/" + employeeId)}
+            onClick={() => navigate("/restrictions")}
           >
             <i className="fas fa-external-link  "></i>
           </button>
@@ -55,14 +58,23 @@ const AvailabilityInfo = ({ id: employeeId }) => {
               <h2 data-label="Start Time:">{availability.startTime}</h2>
               <h2 data-label="End Time:">{availability.endTime}</h2>
               <h2 data-label="Reason:">{availability.reason}</h2>
-              {availability.state === "APPROVED" ? (
-                <h2 data-label="Status:">
-                  <i class="fa-solid fa-circle-check"></i> {availability.state}
+              {availability.state === "APPROVED" && (
+                <h2 data-label="Status:" className="accept">
+                  <i className="fa-solid fa-circle-check"></i>{" "}
+                  {availability.state}
                 </h2>
-              ) : (
-                <h2 data-label="Status:">
-                  <i class="fa-solid fa-circle-xmark"></i> {availability.state}
+              )}
+              {availability.state === "DECLINED" && (
+                <h2 data-label="Status:" className="decline">
+                  <i className="fa-solid fa-circle-xmark"></i>{" "}
+                  {availability.state}
                 </h2>
+              )}
+              {availability.state == "PENDING" && (
+                <UpdateStatusRestriction
+                  rId={availability.availableId}
+                  employeeId={availability.employeeId}
+                />
               )}
             </div>
           );

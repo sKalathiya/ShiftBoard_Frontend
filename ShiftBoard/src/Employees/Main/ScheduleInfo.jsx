@@ -1,53 +1,62 @@
 import React from "react";
-import { useScheduleDataFromEmployeeId } from "../Hooks/useEmployeeData";
 import Loading from "../../Utils/Loading";
+import { useNavigate } from "react-router-dom";
 import AvailabilityInfo from "./AvailabilityInfo";
+import { formatAndSortData } from "../../Utils/checkData";
+import { useScheduleBiweeklyData } from "../../Schedules/Hooks/useScheduleData";
 const ScheduleInfo = ({ id }) => {
-  var date = new Date(new Date().valueOf() - 86400000)
-    .toISOString()
-    .substring(0, 10);
-  const { isLoading, isError, error, data } = useScheduleDataFromEmployeeId(id);
+  const navigate = useNavigate();
+  const { isLoading, isError, error, data } = useScheduleBiweeklyData(id);
   if (isLoading) return <Loading count={5} />;
 
   if (isError) {
     alert(error.message);
     return;
   }
-
-  if (typeof data === "undefined") return <Error />;
-
-  //getting Employee from data
-  const s = data?.data.data;
+  const s = data?.data?.data;
+  const schedule = formatAndSortData(s).slice(0, 7);
 
   return (
     <div className="component-container">
       <span className="component-container-header">
         <p className="heading">Schedule</p>
 
-        <button className="btn p-0 end" title="View Schedule">
+        <button
+          className="btn p-0 end"
+          title="View Schedule"
+          onClick={() => navigate("/schedules/" + id)}
+        >
           <i className="fas fa-external-link  fa-xl"></i>
         </button>
       </span>
-
       <div className="component-container-body">
+        {" "}
         <div className="grid-container-col7 border p-4">
-          {Object.keys(s).map((key, index) => {
+          {schedule.map((shift) => {
             return (
-              <div className="border p-4" key={index}>
-                <center className="center">{key}</center>
+              <div
+                className={
+                  "border " + (!shift.expired ? "shift" : "past-content")
+                }
+                key={shift.date}
+              >
+                <span className="center mt-3 d-flex justify-content-center  fw-bold ">
+                  {shift.day}
+                </span>
                 <hr />
-
-                {s[key] !== null ? (
+                <center className="center">{shift.date}</center>
+                <hr />
+                {shift.scheduleId != -1 ? (
                   <>
                     <center className="grid-container-col1">
-                      {s[key].startTime} <i className="far fa-clock"></i>{" "}
-                      {s[key].endTime}
+                      {shift.startTime} <i className="far fa-clock"></i>{" "}
+                      {shift.endTime}
                     </center>
                     <hr />
-                    <center>Hours: {s[key].totalHour}</center>
+                    <center className="mb-3">Hours: {shift.totalHour}</center>
                   </>
                 ) : (
-                  <center className="py-2"> No Shift available</center>
+                  <center className=" mb-3"> No Shift available</center>
                 )}
               </div>
             );

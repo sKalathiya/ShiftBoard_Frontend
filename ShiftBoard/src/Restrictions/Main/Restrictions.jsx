@@ -1,11 +1,11 @@
 import React from "react";
 import Loading from "../../Utils/Loading";
 
-import { useAllLeavesData } from "../Hooks/useLeaveData";
-import SearchLeaves from "../Feature/SearchLeaves";
+import { useAllRestrictionsData } from "../Hooks/useRestrictionData";
+import SearchRestriction from "../Feature/SearchRestriction";
 
-const Leaves = () => {
-  const { isLoading, isError, error, data } = useAllLeavesData();
+const Restrictions = () => {
+  const { isLoading, isError, error, data } = useAllRestrictionsData();
 
   if (isLoading) {
     return (
@@ -21,27 +21,25 @@ const Leaves = () => {
   }
 
   //leaves
-  const leaves = data?.data?.data;
+  const restrictions = data?.data?.data;
   const keys = [];
-  leaves.map((l) => {
+  restrictions.map((l) => {
     keys.push(l.state);
     return;
   });
-
-  //HTML
   return (
     <section className="main-Container">
       <div className="component-container">
         <span className="component-container-header">
-          <p className="page-heading">Leaves</p>
+          <p className="page-heading">Restrictions</p>
         </span>
 
         <div className="component-container-body">
-          <SearchLeaves leaves={leaves} key={keys} />
+          <SearchRestriction restrictions={restrictions} key={keys} />
         </div>
       </div>
     </section>
   );
 };
 
-export default Leaves;
+export default Restrictions;

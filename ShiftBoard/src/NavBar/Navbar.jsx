@@ -40,6 +40,22 @@ const Navbar = () => {
         </NavLink>
 
         <NavLink
+          title="Schedules"
+          className={
+            "nav-icons " +
+            (({ isActive }) => (isActive ? "active-style" : "none"))
+          }
+          to="/schedules"
+        >
+          <span>
+            <i className="fa-solid fa-calendar-week fa-xl"></i>
+          </span>
+          <span className="text">
+            <b>Schedules</b>
+          </span>
+        </NavLink>
+
+        <NavLink
           title="Leaves"
           className={
             "nav-icons " +
@@ -52,6 +68,22 @@ const Navbar = () => {
           </span>
           <span className="text">
             <b>Leaves</b>
+          </span>
+        </NavLink>
+
+        <NavLink
+          title="Restrictions"
+          className={
+            "nav-icons " +
+            (({ isActive }) => (isActive ? "active-style" : "none"))
+          }
+          to="/restrictions"
+        >
+          <span>
+            <i className="fas fa-calendar-times fa-xl"></i>
+          </span>
+          <span className="text">
+            <b>Restrictions</b>
           </span>
         </NavLink>
       </div>

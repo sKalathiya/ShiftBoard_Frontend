@@ -44,7 +44,6 @@ const DeleteEmployee = ({ id, departmentId }) => {
   } else if (data?.data?.operationStatus === "Failure") {
     reset();
     notify(data?.data?.failureReason, "E");
-    setConfirmDelete(false);
   }
 
   //handle click for delete

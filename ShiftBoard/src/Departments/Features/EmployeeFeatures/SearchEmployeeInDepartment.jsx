@@ -44,7 +44,7 @@ const SearchEmployeeInDepartment = ({ employees }) => {
           type="text"
           id="firstName"
           name="firstName"
-          placeholder="Search By Name or External Id"
+          placeholder="Search By First Name or External Id"
           value={search}
           onChange={handleChange}
         />

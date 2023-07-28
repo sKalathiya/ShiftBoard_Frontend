@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { checkLeaveWithFilter } from "../../Utils/checkData";
 import ListLeave from "../List/ListLeave";
-
-const SearchLeave = ({ leaves }) => {
-  const [leaveList, setLeaveList] = useState(leaves);
+const SearchLeaves = ({ leaves }) => {
+  const [leaveList, setLeaveList] = useState([...leaves]);
   const [formData, setFormData] = useState({
     employeeId: "",
-    category: "",
-    state: "",
+    category: "Select Category of Leave",
+    state: "Select State of Leave",
     date: "",
   });
-
   //handle change of the update
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,7 +32,6 @@ const SearchLeave = ({ leaves }) => {
     let tmp = leaves.filter((leave) => checkLeaveWithFilter(leave, formData));
     setLeaveList([...tmp]);
   };
-
   return (
     <>
       <div className="grid-container-col3">
@@ -68,7 +65,7 @@ const SearchLeave = ({ leaves }) => {
         />
         <span className="end inline-actions">
           <button className="btn ms-1 px-4" id="blackBg" onClick={handleFilter}>
-            Filter
+            <i className="fa-solid fa-filter"></i> Filter
           </button>
           <button
             className="btn ms-1 px-4"
@@ -84,4 +81,4 @@ const SearchLeave = ({ leaves }) => {
   );
 };
 
-export default SearchLeave;
+export default SearchLeaves;
