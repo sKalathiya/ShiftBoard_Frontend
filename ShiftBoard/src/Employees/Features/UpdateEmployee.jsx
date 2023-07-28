@@ -42,7 +42,6 @@ const UpdateEmployee = ({ employee }) => {
   } else if (status?.data?.operationStatus === "Failure") {
     reset();
     notify(status?.data?.failureReason, "E");
-    setIsOpen(false);
   }
 
   //handle change in value of input
@@ -172,7 +171,17 @@ const UpdateEmployee = ({ employee }) => {
                       onChange={handleChange}
                     />
                   </span>
-
+                  <span>
+                    <label htmlFor="state">State:</label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      required
+                      value={formData.state}
+                      onChange={handleChange}
+                    />
+                  </span>
                   <span>
                     <label htmlFor="country">Country:</label>
                     <input

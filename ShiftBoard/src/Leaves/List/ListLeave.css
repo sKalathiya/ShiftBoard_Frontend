@@ -1,0 +1,18 @@
+ .sections .isActive{
+    background-color:  #2C3E50;
+    color: white !important;
+}
+.sections {
+    gap: 0 !important;
+}
+
+.sections a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+.sections a:hover{
+    transition: all 0.3s;
+    color: white;
+    background-color:  #2C3E50;
+}

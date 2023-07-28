@@ -2,6 +2,7 @@ import React from "react";
 import Loading from "../../Utils/Loading";
 import { useNavigate } from "react-router-dom";
 import { useLeaveDataFromEmployeeId } from "../Hooks/useEmployeeData";
+import UpdateStatusLeave from "../../Leaves/Feature/UpdateStatusLeave";
 
 const LeaveInfo = ({ id: employeeId }) => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const LeaveInfo = ({ id: employeeId }) => {
           <button
             className="btn p-0 end"
             title="View Department"
-            onClick={() => navigate("/leaves/" + departmentId)}
+            onClick={() => navigate("/leaves")}
           >
             <i className="fas fa-external-link  fa-xl"></i>
           </button>
@@ -50,27 +51,35 @@ const LeaveInfo = ({ id: employeeId }) => {
         <div className="component-container-body border p-4">
           <div className="grid-container-col4 border-bottom p-2" id="headList">
             <label htmlFor="date">Date</label>
-            <label htmlFor="category">Category</label>
             <label htmlFor="Reason">Reason</label>
+            <label htmlFor="category">Category</label>
             <label htmlFor="Status">Status</label>
           </div>
           {leaves.map((leave) => {
             return (
               <div
                 className="grid-container-col4 border-bottom data-list p-2"
-                key={leave.id}
+                key={leave.leaveId}
               >
                 <h2 data-label="Date:">{leave.date}</h2>
-                <h2 data-label="Category:">{leave.category}</h2>
                 <h2 data-label="Reason:">{leave.reason}</h2>
-                {leave.state === "APPROVED" ? (
-                  <h2 data-label="Status:">
-                    <i class="fa-solid fa-circle-check"></i> {leave.state}
+                <h2 data-label="Category:">{leave.category}</h2>
+                {leave.state === "APPROVED" && (
+                  <h2 data-label="Status:" className="accept">
+                    <i className="fa-solid fa-circle-check"></i> {leave.state}
                   </h2>
-                ) : (
-                  <h2 data-label="Status:">
-                    <i class="fa-solid fa-circle-xmark"></i> {leave.state}
+                )}
+                {leave.state === "DECLINED" && (
+                  <h2 data-label="Status:" className="decline">
+                    <i className="fa-solid fa-circle-xmark"></i> {leave.state}
                   </h2>
+                )}
+
+                {leave.state == "PENDING" && (
+                  <UpdateStatusLeave
+                    leaveId={leave.leaveId}
+                    employeeId={leave.employeeId}
+                  />
                 )}
               </div>
             );

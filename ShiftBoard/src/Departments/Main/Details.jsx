@@ -55,10 +55,12 @@ const Details = ({ id }) => {
             </span>
             <span></span>
             <span>
-              <DeleteDepartment
-                id={departmentId}
-                departmentName={departmentName}
-              />
+              {departmentId != -1 && (
+                <DeleteDepartment
+                  id={departmentId}
+                  departmentName={departmentName}
+                />
+              )}
             </span>
           </div>
         </div>

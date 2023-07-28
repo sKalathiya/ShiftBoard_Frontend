@@ -5,7 +5,6 @@ import SearchEmployeeInDepartment from "../Features/EmployeeFeatures/SearchEmplo
 import Loading from "../../Utils/Loading";
 import TransferEmployee from "../Features/EmployeeFeatures/TransferEmployee";
 import DeleteEmployeeInDepartment from "../Features/EmployeeFeatures/DeleteEmployeeInDepartment";
-import AddEmployee from "../../Employees/Features/AddEmployee";
 
 const DepartmentEmployees = ({ id }) => {
   //Fetching data
@@ -28,18 +27,35 @@ const DepartmentEmployees = ({ id }) => {
         <span className="component-container-header">
           <p className="heading">Employees</p>
           <span className="end inline-actions">
-            <TransferEmployee employees={employees} departmentId={id} />
-            {id != -1 && (
-              <DeleteEmployeeInDepartment
-                employees={employees}
-                collection={true}
-                departmentId={id}
-              />
+            {employees.length != 0 ? (
+              <>
+                <TransferEmployee employees={employees} departmentId={id} />
+                {id != -1 && (
+                  <DeleteEmployeeInDepartment
+                    employees={employees}
+                    collection={true}
+                    departmentId={id}
+                  />
+                )}
+              </>
+            ) : (
+              <></>
             )}
           </span>
         </span>
         <div className="component-container-body">
-          <SearchEmployeeInDepartment employees={employees} key={employees} />
+          {employees.length == 0 ? (
+            <div className="empty-search">
+              <i className="fal fa-file-search fa-2xl"></i>
+              <p className="mt-3">
+                There are no Employees in this department. Please transfer the
+                employees from <a href="/departments/-1">Inactive</a> or add new
+                employee from <a href="/employees">here</a>.
+              </p>
+            </div>
+          ) : (
+            <SearchEmployeeInDepartment employees={employees} key={employees} />
+          )}
         </div>
       </div>
     </>

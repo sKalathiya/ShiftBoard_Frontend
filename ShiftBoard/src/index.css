@@ -238,17 +238,19 @@ input, select {
     align-items: center;
   }
 }
-
-.grid-container-col7 {
+.grid-container-col6 {
   display: grid;
   gap: 2rem;
+  
 }
 @media screen and (min-width: 768px) {
-  .grid-container-col7  {
-    grid-template-columns: repeat(7, 1fr);
+  .grid-container-col6  {
+    grid-template-columns: repeat(6, minmax(150px, 1fr));
     align-items: center;
   }
 }
+
+
 
 
 .card {
@@ -376,9 +378,16 @@ input, select {
   line-height: 1.5;
   margin-bottom: 0;
   }
+  a{cursor: pointer;}
 
-   a{
+  .view{
     cursor: pointer;
+    text-decoration: none;
+   
+  }
+   .view:hover{
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 .data-list:hover{
   background-color: #ECF0F1;
@@ -420,3 +429,47 @@ input, select {
   font-weight: 500;
 }
 
+
+.badge{
+  background-color: var(--primary-color) !important;
+}
+
+
+.accept{
+  color: green !important;
+}
+
+.decline{
+  color: #E74C3C !important;
+}
+
+/* SHIFT */
+.grid-container-col7 {
+  display: grid;
+  gap: 2rem;
+
+}
+@media screen and (min-width: 768px) {
+  .grid-container-col7  {
+    grid-template-columns: repeat(7, 1fr);
+    align-items: self-start;
+   
+  }
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+.past-content {
+
+  color: #888; /* Dim gray text color */
+  opacity: 0.7; /* Reduced opacity to create a faded effect */
+  cursor: not-allowed
+ 
+}
+
+
+.shift:hover {
+  background-color:#ECF0F1 ;
+}

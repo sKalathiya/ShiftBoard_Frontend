@@ -28,7 +28,7 @@ const ListEmployee = ({ employees }) => {
                   navigate("/departments/" + employee.departmentId)
                 }
               >
-                <a className="link-primary">{employee.departmentId}</a>
+                <a className="link-primary view">{employee.departmentId}</a>
               </h2>
               <h2 data-label="Name:">{employee.email}</h2>
               <span className="end inline-actions">

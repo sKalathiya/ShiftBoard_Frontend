@@ -10,20 +10,23 @@ const ListEmployeeInCard = ({ employees }) => {
       {employees.map((employee) => {
         return (
           <div className="card" key={employee.id}>
-            <img src={vite} alt="Avatar" />
             <div className="container">
               <span>
                 <label htmlFor="employeeId">Employee Id</label>
                 <h2 onClick={() => navigate("/employees/" + employee.id)}>
-                  <a className="link-primary">{employee.id}</a>
+                  <a className="link-primary view">{employee.id}</a>
                 </h2>
               </span>
               <span>
-                <label htmlFor="Name">Name</label>
+                <label htmlFor="Name">First Name</label>
                 <h2>{employee.firstName}</h2>
               </span>
               <span className="inline-actions">
-                <TransferEmployee employeeId={employee.id} icon={true} />
+                <TransferEmployee
+                  employeeId={employee.id}
+                  icon={true}
+                  departmentId={employee.departmentId}
+                />
 
                 {employee.departmentId != -1 && (
                   <DeleteEmployeeInDepartment

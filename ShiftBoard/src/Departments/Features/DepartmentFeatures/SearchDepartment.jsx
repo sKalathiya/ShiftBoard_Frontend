@@ -64,7 +64,7 @@ const SearchDepartment = ({ departments }) => {
         />
         <span className="end inline-actions">
           <button className="btn ms-1 px-4" id="blackBg" onClick={handleFilter}>
-            Filter
+            <i className="fa-solid fa-filter"></i> Filter
           </button>
           <button
             className="btn ms-1 px-4"

@@ -10,6 +10,9 @@ import Department from "../Departments/Main/Department";
 import Departments from "../Departments/Main/Departments";
 import Employee from "../Employees/Main/Employee";
 import Footer from "../Footer/Footer";
+import Leaves from "../Leaves/Main/Leaves";
+import Restrictions from "../Restrictions/Main/Restrictions";
+import Schedules from "../Schedules/Main/Schedules";
 
 const Layout = () => {
   return (
@@ -25,6 +28,9 @@ const Layout = () => {
             <Route path="departments/:id" element={<Department />}></Route>
             <Route path="employees" element={<Employees />}></Route>
             <Route path="employees/:id" element={<Employee />}></Route>
+            <Route path="leaves" element={<Leaves />}></Route>
+            <Route path="restrictions" element={<Restrictions />}></Route>
+            <Route path="schedules/:id?" element={<Schedules />}></Route>
           </Routes>
         </div>
       </div>
