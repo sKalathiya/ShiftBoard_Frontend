@@ -21,13 +21,12 @@ const RemoveSchedule = ({ shift, employeeId }) => {
   if (status?.data?.operationStatus === "Success") {
     reset();
     notify("Shift Removed", "S");
-    setIsOpen(false);
   } else if (status?.data?.operationStatus === "Failure") {
     reset();
     notify(status?.data?.failureReason, "E");
   }
 
-  const handleDelete = (event) => {
+  const handleDelete = () => {
     if (window.confirm("Remove the Shift from " + shift.date + " ?")) {
       deleteSchedule({ employeeId, date: shift.date });
     }

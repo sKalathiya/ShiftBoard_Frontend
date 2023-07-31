@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useEmployeeDataByDepartmentId } from "../Hooks/useDepartmentData";
 import SearchEmployeeInDepartment from "../Features/EmployeeFeatures/SearchEmployeeInDepartment";
 import Loading from "../../Utils/Loading";
@@ -16,7 +15,7 @@ const DepartmentEmployees = ({ id }) => {
     alert(error.message);
     return;
   }
-
+  if (data?.data?.operationStatus === "Failure") return;
   //resolving data
   const employees = data?.data?.data;
 

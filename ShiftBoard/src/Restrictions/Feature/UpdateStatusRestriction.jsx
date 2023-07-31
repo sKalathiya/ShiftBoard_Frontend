@@ -55,7 +55,7 @@ const UpdateStatusRestriction = ({ employeeId, rId }) => {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Edit
+          <i className="fa-solid fa-gear"></i> Pending
         </button>
       )}
 

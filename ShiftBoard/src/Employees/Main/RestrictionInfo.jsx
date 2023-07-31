@@ -1,13 +1,14 @@
 import React from "react";
-import { useAvailabilityDataFromEmployeeId } from "../Hooks/useEmployeeData";
+import { useRestrictionDataFromEmployeeId } from "../Hooks/useEmployeeData";
 import Loading from "../../Utils/Loading";
+
 import { useNavigate } from "react-router-dom";
 import UpdateStatusRestriction from "../../Restrictions/Feature/UpdateStatusRestriction";
-
-const AvailabilityInfo = ({ id: employeeId }) => {
+import { formatTime } from "../../Utils/checkData";
+const RestrictionInfo = ({ id: employeeId }) => {
   const navigate = useNavigate();
   const { isLoading, isError, error, data } =
-    useAvailabilityDataFromEmployeeId(employeeId);
+    useRestrictionDataFromEmployeeId(employeeId);
   if (isLoading) return <Loading count={5} />;
 
   if (isError) {
@@ -15,12 +16,12 @@ const AvailabilityInfo = ({ id: employeeId }) => {
     return;
   }
 
-  if (typeof data === "undefined") return <Error />;
+  if (data?.data?.operationStatus === "Failure") return;
 
   //getting Employee from data
-  const availabilities = data?.data?.data;
+  const restrictions = data?.data?.data;
   let nothing = false;
-  if (availabilities.length == 0) {
+  if (restrictions.length == 0) {
     nothing = true;
   }
 
@@ -47,33 +48,35 @@ const AvailabilityInfo = ({ id: employeeId }) => {
           <label htmlFor="Reason">Reason</label>
           <label htmlFor="Status">Status</label>
         </div>
-        {availabilities.map((availability) => {
+        {restrictions.map((r) => {
           return (
             <div
               className="grid-container-col5 border-bottom data-list p-2"
-              key={availability.day}
+              key={r.day}
             >
-              <h2 data-label="Day:">{availability.day}</h2>
+              <h2 data-label="Day:">{r.day}</h2>
 
-              <h2 data-label="Start Time:">{availability.startTime}</h2>
-              <h2 data-label="End Time:">{availability.endTime}</h2>
-              <h2 data-label="Reason:">{availability.reason}</h2>
-              {availability.state === "APPROVED" && (
-                <h2 data-label="Status:" className="accept">
-                  <i className="fa-solid fa-circle-check"></i>{" "}
-                  {availability.state}
+              <h2 data-label="Start Time:">{formatTime(r.startTime)}</h2>
+              <h2 data-label="End Time:">{formatTime(r.endTime)}</h2>
+              <h2 data-label="Reason:">{r.reason}</h2>
+              {r.state === "APPROVED" && (
+                <h2 data-label="Status:">
+                  <span className="badge bg-success rounded-pill ">
+                    <i className="fa-solid fa-circle-check"></i> {r.state}
+                  </span>
                 </h2>
               )}
-              {availability.state === "DECLINED" && (
-                <h2 data-label="Status:" className="decline">
-                  <i className="fa-solid fa-circle-xmark"></i>{" "}
-                  {availability.state}
+              {r.state === "DECLINED" && (
+                <h2 data-label="Status:">
+                  <span className="badge bg-danger rounded-pill">
+                    <i className="fa-solid fa-circle-xmark"></i> {r.state}
+                  </span>
                 </h2>
               )}
-              {availability.state == "PENDING" && (
+              {r.state == "PENDING" && (
                 <UpdateStatusRestriction
-                  rId={availability.availableId}
-                  employeeId={availability.employeeId}
+                  rId={r.availableId}
+                  employeeId={r.employeeId}
                 />
               )}
             </div>
@@ -90,4 +93,4 @@ const AvailabilityInfo = ({ id: employeeId }) => {
   );
 };
 
-export default AvailabilityInfo;
+export default RestrictionInfo;

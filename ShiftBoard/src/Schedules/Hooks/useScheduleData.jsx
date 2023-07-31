@@ -24,7 +24,7 @@ const fetchScheduleBiWeekly = (id) => {
 
 export const useScheduleBiweeklyData = (id) => {
   return useQuery({
-    queryKey: ["Schedule", id, "BiWeekly"],
+    queryKey: ["Schedule", "" + id, "BiWeekly"],
     queryFn: () => fetchScheduleBiWeekly(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -33,7 +33,7 @@ export const useScheduleBiweeklyData = (id) => {
 
 // add schedule to employee
 
-//add employee
+//add Schedule
 const addSchedule = ({ employeeId, date, data }) => {
   return fetch({
     url: `/api/v1/schedules/admin/employee/${employeeId}?dt=` + date,
@@ -46,7 +46,7 @@ export const useAddSchedule = (employeeId) => {
   const queryClient = useQueryClient();
   return useMutation(addSchedule, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["Schedule", "" + employeeId]);
+      queryClient.invalidateQueries(["Schedule", "" + employeeId, "BiWeekly"]);
       queryClient.invalidateQueries(["Employee", "" + employeeId, "Schedule"]);
     },
   });
@@ -64,14 +64,13 @@ export const useDeleteSchedule = (employeeId) => {
   const queryClient = useQueryClient();
   return useMutation(deleteSchedule, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["Schedule", "" + employeeId]);
+      queryClient.invalidateQueries(["Schedule", "" + employeeId, "BiWeekly"]);
       queryClient.invalidateQueries(["Employee", "" + employeeId, "Schedule"]);
     },
   });
 };
 
 //Restriction for employee
-//fetch schedule for this week and next week
 
 const fetchRestrictionByEmployee = (id) => {
   return fetch({ url: `/api/v1/availability/${id}` });
@@ -79,7 +78,7 @@ const fetchRestrictionByEmployee = (id) => {
 
 export const useRestrictionByEmployeeData = (id) => {
   return useQuery({
-    queryKey: ["Schedule", id, "Restriction"],
+    queryKey: ["Schedule", "" + id, "Restriction"],
     queryFn: () => fetchRestrictionByEmployee(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

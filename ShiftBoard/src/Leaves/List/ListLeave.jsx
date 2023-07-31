@@ -98,12 +98,16 @@ const ListLeave = ({ leaves }) => {
               <h2 data-label="Category:">{leave.category}</h2>
               {leave.state === "APPROVED" && (
                 <h2 data-label="Status:" className="accept">
-                  <i className="fa-solid fa-circle-check"></i> {leave.state}
+                  <span className="badge bg-success rounded-pill ">
+                    <i className="fa-solid fa-circle-check"></i> {leave.state}
+                  </span>
                 </h2>
               )}
               {leave.state === "DECLINED" && (
-                <h2 data-label="Status:" className="decline">
-                  <i className="fa-solid fa-circle-xmark"></i> {leave.state}
+                <h2 data-label="Status:">
+                  <span className="badge bg-danger rounded-pill ">
+                    <i className="fa-solid fa-circle-xmark"></i> {leave.state}
+                  </span>
                 </h2>
               )}
 

@@ -100,8 +100,10 @@ section p{
 
 
 :root {
-  --danger-color:  #E74C3C;
+  --danger-color:  rgba(220, 53, 69);
   --primary-color: #2C3E50   ; 
+
+
 }
 
  
@@ -437,11 +439,14 @@ input, select {
 
 .accept{
   color: green !important;
+ 
 }
 
 .decline{
   color: #E74C3C !important;
 }
+
+
 
 /* SHIFT */
 .grid-container-col7 {

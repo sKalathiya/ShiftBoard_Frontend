@@ -22,7 +22,7 @@ const fetchEmployeeById = (id) => {
 
 export const useEmployeeData = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Details"],
+    queryKey: ["Employee", "" + id, "Details"],
     queryFn: () => fetchEmployeeById(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -36,7 +36,7 @@ const fetchScheduleByEmployeeId = (id) => {
 
 export const useScheduleDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Schedule"],
+    queryKey: ["Employee", "" + id, "Schedule"],
     queryFn: () => fetchScheduleByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -50,7 +50,7 @@ const fetchDepartmentByEmployeeId = (id) => {
 
 export const useDepartmentDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Department"],
+    queryKey: ["Employee", "" + id, "Department"],
     queryFn: () => fetchDepartmentByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -58,14 +58,14 @@ export const useDepartmentDataFromEmployeeId = (id) => {
 };
 
 //Fetch Availability nby Eid
-const fetchAvailabilityByEmployeeId = (id) => {
+const fetchRestrictionByEmployeeId = (id) => {
   return fetch({ url: `/api/v1/availability/${id}` });
 };
 
-export const useAvailabilityDataFromEmployeeId = (id) => {
+export const useRestrictionDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Availability"],
-    queryFn: () => fetchAvailabilityByEmployeeId(id),
+    queryKey: ["Employee", "" + id, "Restriction"],
+    queryFn: () => fetchRestrictionByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });
@@ -78,7 +78,7 @@ const fetchLeaveByEmployeeId = (id) => {
 
 export const useLeaveDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", id, "Leave"],
+    queryKey: ["Employee", "" + id, "Leave"],
     queryFn: () => fetchLeaveByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

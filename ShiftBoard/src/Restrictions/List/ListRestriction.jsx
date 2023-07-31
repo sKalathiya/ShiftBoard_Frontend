@@ -4,6 +4,7 @@ import "./ListRestriction.css";
 
 import { useNavigate } from "react-router-dom";
 import UpdateStatusRestriction from "../Feature/UpdateStatusRestriction";
+import { formatTime } from "../../Utils/checkData";
 
 const ListRestriction = ({ restrictions }) => {
   const navigate = useNavigate();
@@ -99,18 +100,22 @@ const ListRestriction = ({ restrictions }) => {
               </h2>
 
               <h2 data-label="Date:">{r.day}</h2>
-              <h2 data-label="Start Time:">{r.startTime}</h2>
-              <h2 data-label="End Time:">{r.endTime}</h2>
+              <h2 data-label="Start Time:">{formatTime(r.startTime)}</h2>
+              <h2 data-label="End Time:">{formatTime(r.endTime)}</h2>
               <h2 data-label="Reason:">{r.reason}</h2>
 
               {r.state === "APPROVED" && (
-                <h2 data-label="Status:" className="accept">
-                  <i className="fa-solid fa-circle-check"></i> {r.state}
+                <h2 data-label="Status:">
+                  <span className="badge bg-success rounded-pill ">
+                    <i className="fa-solid fa-circle-check"></i> {r.state}
+                  </span>
                 </h2>
               )}
               {r.state === "DECLINED" && (
-                <h2 data-label="Status:" className="decline">
-                  <i className="fa-solid fa-circle-xmark"></i> {r.state}
+                <h2 data-label="Status:">
+                  <span className="badge bg-danger rounded-pill">
+                    <i className="fa-solid fa-circle-xmark"></i> {r.state}
+                  </span>
                 </h2>
               )}
               {r.state == "PENDING" && (

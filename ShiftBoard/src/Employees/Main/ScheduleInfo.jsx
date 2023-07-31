@@ -1,11 +1,11 @@
 import React from "react";
 import Loading from "../../Utils/Loading";
-import { useNavigate } from "react-router-dom";
-import AvailabilityInfo from "./AvailabilityInfo";
+
+import { Link } from "react-router-dom";
 import { formatAndSortData } from "../../Utils/checkData";
 import { useScheduleBiweeklyData } from "../../Schedules/Hooks/useScheduleData";
+import RestrictionInfo from "./RestrictionInfo";
 const ScheduleInfo = ({ id }) => {
-  const navigate = useNavigate();
   const { isLoading, isError, error, data } = useScheduleBiweeklyData(id);
   if (isLoading) return <Loading count={5} />;
 
@@ -13,6 +13,9 @@ const ScheduleInfo = ({ id }) => {
     alert(error.message);
     return;
   }
+
+  if (data?.data?.operationStatus === "Failure") return;
+
   const s = data?.data?.data;
   const schedule = formatAndSortData(s).slice(0, 7);
 
@@ -21,13 +24,9 @@ const ScheduleInfo = ({ id }) => {
       <span className="component-container-header">
         <p className="heading">Schedule</p>
 
-        <button
-          className="btn p-0 end"
-          title="View Schedule"
-          onClick={() => navigate("/schedules/" + id)}
-        >
+        <Link className="btn p-0 end" to={`/schedules/${id}`}>
           <i className="fas fa-external-link  fa-xl"></i>
-        </button>
+        </Link>
       </span>
       <div className="component-container-body">
         {" "}
@@ -63,7 +62,7 @@ const ScheduleInfo = ({ id }) => {
           })}
         </div>
       </div>
-      <AvailabilityInfo id={id} />
+      <RestrictionInfo id={id} />
     </div>
   );
 };

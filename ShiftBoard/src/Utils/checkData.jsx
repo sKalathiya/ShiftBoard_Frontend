@@ -126,7 +126,7 @@ function getDayOfWeek(dateStr) {
 }
 
 // Function to format time to AM and PM
-function formatTime(timeString) {
+export const formatTime = (timeString) => {
   const [hours, minutes] = timeString.split(":");
   const parsedHours = parseInt(hours);
   const amPM = parsedHours >= 12 ? "PM" : "AM";
@@ -136,7 +136,7 @@ function formatTime(timeString) {
       : (parsedHours % 12).toString().padStart(2, "0");
   const formattedTime = `${formattedHours}:${minutes} ${amPM}`;
   return formattedTime;
-}
+};
 
 // Function to format and sort the data
 export const formatAndSortData = (data) => {
@@ -157,4 +157,22 @@ export const formatAndSortData = (data) => {
   formattedData.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return formattedData;
+};
+
+//function to format Date
+export const formatDateToYYYYMMDD = (date) => {
+  // Check if the input is a valid Date object
+  if (!(date instanceof Date) || isNaN(date)) {
+    throw new Error("Invalid date");
+  }
+
+  // Extract year, month, and day from the input date
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
+  const day = String(date.getDate()).padStart(2, "0");
+
+  // Concatenate the parts to create the formatted date string
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
 };
