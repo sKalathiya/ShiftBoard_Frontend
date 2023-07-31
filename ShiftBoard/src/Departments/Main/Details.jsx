@@ -14,7 +14,8 @@ const Details = ({ id }) => {
     return;
   }
 
-  if (typeof data === "undefined") return <Error />;
+  if (data?.data?.operationStatus === "Failure")
+    return <Error message={"No such Department found."} />;
 
   //getting department from data
   const department = data?.data.data;

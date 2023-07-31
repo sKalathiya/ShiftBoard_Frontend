@@ -1,5 +1,6 @@
 import React from "react";
 import Loading from "../../Utils/Loading";
+
 import { useNavigate } from "react-router-dom";
 import { useLeaveDataFromEmployeeId } from "../Hooks/useEmployeeData";
 import UpdateStatusLeave from "../../Leaves/Feature/UpdateStatusLeave";
@@ -17,7 +18,7 @@ const LeaveInfo = ({ id: employeeId }) => {
     return;
   }
 
-  if (typeof data === "undefined") return <Error />;
+  if (data?.data?.operationStatus === "Failure") return;
 
   //getting Employee from data
   const d = data?.data.data;
@@ -66,12 +67,16 @@ const LeaveInfo = ({ id: employeeId }) => {
                 <h2 data-label="Category:">{leave.category}</h2>
                 {leave.state === "APPROVED" && (
                   <h2 data-label="Status:" className="accept">
-                    <i className="fa-solid fa-circle-check"></i> {leave.state}
+                    <span className="badge bg-success rounded-pill">
+                      <i className="fa-solid fa-circle-check"></i> {leave.state}
+                    </span>
                   </h2>
                 )}
                 {leave.state === "DECLINED" && (
-                  <h2 data-label="Status:" className="decline">
-                    <i className="fa-solid fa-circle-xmark"></i> {leave.state}
+                  <h2 data-label="Status:">
+                    <span className="badge bg-danger rounded-pill ">
+                      <i className="fa-solid fa-circle-xmark"></i> {leave.state}
+                    </span>
                   </h2>
                 )}
 

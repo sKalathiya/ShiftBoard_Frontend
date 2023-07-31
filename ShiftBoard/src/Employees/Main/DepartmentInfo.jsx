@@ -1,4 +1,5 @@
 import React from "react";
+
 import Loading from "../../Utils/Loading";
 import { useNavigate } from "react-router-dom";
 import TransferEmployee from "../../Departments/Features/EmployeeFeatures/TransferEmployee";
@@ -17,7 +18,7 @@ const DepartmentInfo = ({ id: employeeId }) => {
     return;
   }
 
-  if (typeof data === "undefined") return <Error />;
+  if (data?.data?.operationStatus === "Failure") return;
 
   //getting Employee from data
   const department = data?.data.data;

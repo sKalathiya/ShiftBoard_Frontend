@@ -1,6 +1,7 @@
 import React from "react";
 import Loading from "../../Utils/Loading";
 import { useEmployeeData } from "../Hooks/useEmployeeData";
+import Error from "../../Error/Error";
 
 import UpdateEmployee from "../Features/UpdateEmployee";
 import DeleteEmployee from "../Features/DeleteEmployee";
@@ -14,7 +15,8 @@ const EmployeeInfo = ({ employeeId }) => {
     return;
   }
 
-  if (typeof data === "undefined") return <Error />;
+  if (data?.data?.operationStatus === "Failure")
+    return <Error message={"No such Employee found."} />;
 
   //getting Employee from data
   const employee = data?.data.data;

@@ -32,6 +32,7 @@ const SearchRestriction = ({ restrictions }) => {
           placeholder="Search By employeeId"
         />
       </div>
+      <span className="fw-bold h5"> {restrictionList.length} Results</span>
       <ListRestriction restrictions={restrictionList} key={restrictionList} />
     </>
   );

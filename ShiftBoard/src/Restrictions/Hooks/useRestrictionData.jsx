@@ -7,7 +7,7 @@ const fetchAllRestrictions = () => {
 };
 export const useAllRestrictionsData = () => {
   return useQuery({
-    queryKey: ["Availabilities"],
+    queryKey: ["Restrictions"],
     queryFn: fetchAllRestrictions,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
@@ -29,10 +29,10 @@ export const useUpdateRestrictionStatus = (employeeId) => {
       queryClient.invalidateQueries([
         "Employee",
         "" + employeeId,
-        "Availability",
+        "Restriction",
       ]);
       queryClient.invalidateQueries(["Employee", "" + employeeId, "Schedule"]);
-      queryClient.invalidateQueries(["Availabilities"]);
+      queryClient.invalidateQueries(["Restrictions"]);
       queryClient.invalidateQueries([
         "Schedule",
         "" + employeeId,

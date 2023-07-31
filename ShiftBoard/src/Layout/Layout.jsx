@@ -13,6 +13,8 @@ import Footer from "../Footer/Footer";
 import Leaves from "../Leaves/Main/Leaves";
 import Restrictions from "../Restrictions/Main/Restrictions";
 import Schedules from "../Schedules/Main/Schedules";
+import Error from "../Error/Error";
+import Dashboard from "../Dashboard/Main/Dashboard";
 
 const Layout = () => {
   return (
@@ -24,6 +26,7 @@ const Layout = () => {
 
         <div className="child px-4" id="content">
           <Routes>
+            <Route path="" element={<Dashboard />}></Route>
             <Route path="departments" element={<Departments />}></Route>
             <Route path="departments/:id" element={<Department />}></Route>
             <Route path="employees" element={<Employees />}></Route>
@@ -31,6 +34,7 @@ const Layout = () => {
             <Route path="leaves" element={<Leaves />}></Route>
             <Route path="restrictions" element={<Restrictions />}></Route>
             <Route path="schedules/:id?" element={<Schedules />}></Route>
+            <Route path="error" element={<Error />}></Route>
           </Routes>
         </div>
       </div>

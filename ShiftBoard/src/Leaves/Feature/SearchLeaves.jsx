@@ -76,6 +76,7 @@ const SearchLeaves = ({ leaves }) => {
           </button>
         </span>
       </div>
+      <span className="fw-bold h5"> {leaveList.length} Results</span>
       <ListLeave leaves={leaveList} key={leaveList} />
     </>
   );

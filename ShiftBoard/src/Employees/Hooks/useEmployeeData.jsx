@@ -58,14 +58,14 @@ export const useDepartmentDataFromEmployeeId = (id) => {
 };
 
 //Fetch Availability nby Eid
-const fetchAvailabilityByEmployeeId = (id) => {
+const fetchRestrictionByEmployeeId = (id) => {
   return fetch({ url: `/api/v1/availability/${id}` });
 };
 
-export const useAvailabilityDataFromEmployeeId = (id) => {
+export const useRestrictionDataFromEmployeeId = (id) => {
   return useQuery({
-    queryKey: ["Employee", "" + id, "Availability"],
-    queryFn: () => fetchAvailabilityByEmployeeId(id),
+    queryKey: ["Employee", "" + id, "Restriction"],
+    queryFn: () => fetchRestrictionByEmployeeId(id),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });

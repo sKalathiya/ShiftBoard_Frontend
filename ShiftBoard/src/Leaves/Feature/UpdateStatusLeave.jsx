@@ -53,7 +53,7 @@ const UpdateStatusLeave = ({ employeeId, leaveId }) => {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Edit
+          <i className="fa-solid fa-gear"></i> Pending
         </button>
       )}
 

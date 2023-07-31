@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://shiftboard-backend-06ff7b9a73e3.herokuapp.com",
 });
 const token =
   "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMUBnbWFpbC5jb20iLCJpYXQiOjE2ODM1MDA2ODQsImV4cCI6MTY4MzUwMjEyNH0.7QUaKFhzWL_vUddFFaEmhaAqw6XslYYUtm-OKeM2P40";

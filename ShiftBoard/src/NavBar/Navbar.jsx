@@ -8,6 +8,22 @@ const Navbar = () => {
     <div className=" my-navbar  ">
       <div className="navbar-list">
         <NavLink
+          title="Dashboard"
+          className={
+            "nav-icons " +
+            (({ isActive }) => (isActive ? "active-style" : "none"))
+          }
+          to="/"
+        >
+          <span>
+            <i className="fa-solid fa-table-columns fa-xl"></i>
+          </span>
+          <span className="text">
+            <b>Dashboard</b>
+          </span>
+        </NavLink>
+
+        <NavLink
           title="Departments"
           className={
             "nav-icons " +
