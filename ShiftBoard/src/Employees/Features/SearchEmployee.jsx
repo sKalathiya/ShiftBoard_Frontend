@@ -119,8 +119,7 @@ const SearchEmployee = ({ employees }) => {
         </span>
       </div>
 
-      <span className="fw-bold h5"> {employeeList.length} Results</span>
-      <ListEmployee employees={employeeList} />
+      <ListEmployee employees={employeeList} key={employeeList} />
     </>
   );
 };

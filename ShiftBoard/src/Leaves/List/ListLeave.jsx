@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { renderPagination } from "../../Utils/Pagination.jsx";
 import "./ListLeave.css";
 import UpdateStatusLeave from "../Feature/UpdateStatusLeave";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +31,20 @@ const ListLeave = ({ leaves }) => {
       setSelected("P");
     }
   };
+
+  //pagination
+  const [page, setPage] = useState(1);
+  const noOfLeaves = selectedLeaves.length;
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(noOfLeaves / itemsPerPage);
+
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
+  };
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, noOfLeaves);
+  const list = selectedLeaves.slice(startIndex, endIndex);
 
   return (
     <>
@@ -80,7 +94,7 @@ const ListLeave = ({ leaves }) => {
           <label htmlFor="State">State</label>
         </div>
 
-        {selectedLeaves.map((leave) => {
+        {list.map((leave) => {
           return (
             <div
               className="grid-container-col5 border-bottom data-list p-2 mx-4"
@@ -121,10 +135,18 @@ const ListLeave = ({ leaves }) => {
           );
         })}
 
-        {selectedLeaves.length == 0 && (
+        {selectedLeaves.length == 0 ? (
           <div className="empty-search">
             <i className="fal fa-file-search fa-2xl"></i>
             <p className="mt-3"> No Such Leaves Found !!</p>
+          </div>
+        ) : (
+          <div className="pagination p-2 mx-4 ">
+            <div className="desc d-flex  align-items-center me-2">
+              {startIndex + 1} - {endIndex} of {noOfLeaves}
+            </div>
+            {noOfLeaves > 10 &&
+              renderPagination(page, totalPages, handlePageClick)}
           </div>
         )}
       </div>

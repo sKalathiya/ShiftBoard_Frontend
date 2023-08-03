@@ -75,8 +75,8 @@ const SearchDepartment = ({ departments }) => {
           </button>
         </span>
       </div>
-      <span className="fw-bold h5"> {departmentList.length} Results</span>
-      <ListDepartment departments={departmentList} />
+
+      <ListDepartment departments={departmentList} key={departments} />
     </>
   );
 };

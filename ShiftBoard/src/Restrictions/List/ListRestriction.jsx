@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { renderPagination } from "../../Utils/Pagination.jsx";
 import "./ListRestriction.css";
 
 import { useNavigate } from "react-router-dom";
@@ -35,6 +35,20 @@ const ListRestriction = ({ restrictions }) => {
       setSelected("P");
     }
   };
+
+  //pagination
+  const [page, setPage] = useState(1);
+  const noOfRestrictions = selectedRestrictions.length;
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(noOfRestrictions / itemsPerPage);
+
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
+  };
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, noOfRestrictions);
+  const list = selectedRestrictions.slice(startIndex, endIndex);
 
   return (
     <>
@@ -128,10 +142,18 @@ const ListRestriction = ({ restrictions }) => {
           );
         })}
 
-        {selectedRestrictions.length == 0 && (
+        {selectedRestrictions.length == 0 ? (
           <div className="empty-search">
             <i className="fal fa-file-search fa-2xl"></i>
             <p className="mt-3"> No Such Restrictions Found !!</p>
+          </div>
+        ) : (
+          <div className="pagination p-2 mx-4 ">
+            <div className="desc d-flex  align-items-center me-2">
+              {startIndex + 1} - {endIndex} of {noOfRestrictions}
+            </div>
+            {noOfRestrictions > 10 &&
+              renderPagination(page, totalPages, handlePageClick)}
           </div>
         )}
       </div>
