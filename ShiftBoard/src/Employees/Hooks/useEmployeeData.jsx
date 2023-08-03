@@ -15,6 +15,20 @@ export const useAllEmployeesData = () => {
   });
 };
 
+//fetch all employee By page
+const fetchAllEmployeesByPage = (page) => {
+  return fetch({ url: "/api/v1/employees/admin/" + page });
+};
+
+export const useAllEmployeesByPageData = (page) => {
+  return useQuery({
+    queryKey: ["Employees", "" + page],
+    queryFn: () => fetchAllEmployeesByPage(page),
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+};
+
 //fetch employee by Id
 const fetchEmployeeById = (id) => {
   return fetch({ url: `/api/v1/employees/${id}` });

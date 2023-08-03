@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./employee-list.css";
-
+import { renderPagination } from "../../Utils/Pagination.jsx";
 const ListEmployee = ({ employees }) => {
+  //pagination
+  const [employeePage, setEmployeePage] = useState(1);
+  const noOfEmployees = employees.length;
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(noOfEmployees / itemsPerPage);
+
   const navigate = useNavigate();
+
+  const handlePageClick = (pageNumber) => {
+    setEmployeePage(pageNumber);
+  };
+
+  const startIndex = (employeePage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, noOfEmployees);
+  const list = employees.slice(startIndex, endIndex);
   return (
     <>
       <div className="grid-container-col1 border p-4">
@@ -15,7 +28,7 @@ const ListEmployee = ({ employees }) => {
           <label htmlFor="actions">Actions</label>
         </div>
 
-        {employees.map((employee) => {
+        {list.map((employee) => {
           return (
             <div className="grid-container-col5 border-bottom data-list p-2">
               <h2 data-label="Id:">{employee.id}</h2>
@@ -44,10 +57,18 @@ const ListEmployee = ({ employees }) => {
           );
         })}
 
-        {employees.length == 0 && (
+        {employees.length == 0 ? (
           <div className="empty-search">
             <i class="fal fa-file-search fa-2xl"></i>
             <p className="mt-3"> No Such Employees Found !!</p>
+          </div>
+        ) : (
+          <div className="pagination p-2 ">
+            <div className="desc d-flex  align-items-center me-2">
+              {startIndex + 1} - {endIndex} of {noOfEmployees}
+            </div>
+            {noOfEmployees > 10 &&
+              renderPagination(employeePage, totalPages, handlePageClick)}
           </div>
         )}
       </div>

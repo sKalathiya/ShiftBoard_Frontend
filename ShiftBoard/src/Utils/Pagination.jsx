@@ -1,39 +1,36 @@
-import React from "react";
+export const renderPagination = (currentPage, totalPages, handlePageClick) => {
+  const pages = [];
+  const maxVisiblePages = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-const Pagination = ({ noOfEmployees }) => {
-  //pagination
-  const [employeePage, setEmployeePage] = useState(1);
-  const minIndex = 9 * (employeePage - 1) + 1;
-  const maxIndex = Math.min(9 * (employeePage - 1) + 9, noOfEmployees);
-
-  //creating numbers depending upon the no Of employees
-  let pages = null;
-  if (noOfEmployees <= 9) {
-    pages = [...new Array(0)];
-  } else {
-    const size = Math.ceil(noOfEmployees / 9);
-    console.log(size);
-    pages = [...new Array(size)];
+  if (endPage - startPage + 1 < maxVisiblePages) {
+    startPage = Math.max(1, endPage - maxVisiblePages + 1);
   }
 
-  return (
-    <div className="pagination">
-      <span className="desc">
-        {minIndex} - {maxIndex} of {noOfEmployees}
-      </span>
-      {pages.map((_each, index) => {
-        return (
-          <button
-            className={employeePage === index + 1 ? "active" : ""}
-            onClick={() => setEmployeePage(index + 1)}
-            key={index + 1}
-          >
-            {index + 1}
-          </button>
-        );
-      })}
-    </div>
-  );
-};
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(
+      <button
+        key={i}
+        className={(currentPage === i ? "active" : "") + " border"}
+        onClick={() => handlePageClick(i)}
+      >
+        {i}
+      </button>
+    );
+  }
 
-export default Pagination;
+  if (endPage < totalPages) {
+    pages.push(
+      <button
+        key={totalPages + 1}
+        onClick={() => handlePageClick(endPage + 1)}
+        className="border"
+      >
+        <i className="fa-solid fa-arrow-right fa-xl"></i>
+      </button>
+    );
+  }
+
+  return pages;
+};
