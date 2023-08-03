@@ -3,6 +3,7 @@ import { renderPagination } from "../../Utils/Pagination.jsx";
 import { useState } from "react";
 const ListDepartment = ({ departments }) => {
   const navigate = useNavigate();
+  //pagination
   const [departmentPage, setDepartmentPage] = useState(1);
   const noOfDepartment = departments.length;
   const itemsPerPage = 10;

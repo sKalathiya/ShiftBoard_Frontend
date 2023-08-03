@@ -51,13 +51,7 @@ const SearchEmployeeInDepartment = ({ employees }) => {
         <span></span>
       </div>
 
-      {!checkEmpty && <ListEmployeeInCard employees={filterEmployees} />}
-      {checkEmpty && (
-        <div className="empty-search">
-          <i className="fal fa-file-search fa-2xl"></i>
-          <p className="mt-3"> No Such Employees Found !!</p>
-        </div>
-      )}
+      <ListEmployeeInCard employees={filterEmployees} key={filterEmployees} />
     </>
   );
 };
